@@ -13,8 +13,8 @@ int main(void)
 	{
 		prompt();
 		command = scanline();
+		execute_command(command);
 	}
-	(void)command;
 
 	return (0);
 }

@@ -10,7 +10,7 @@
 #include <dirent.h>
 #include <signal.h>
 #include <sys/stat.h>
-/*#include <sys/wait.h>*/
+#include <sys/wait.h>
 #include <errno.h>
 #include <limits.h>
 
@@ -18,9 +18,11 @@
 int _strlen(char *s);
 char *_strdup(char *str);
 int remove_newline(char *str);
+char **_strtok(char *str);
 /*main functions*/
 void prompt(void);
 char *scanline(void);
+int execute_command(char *command);
 
 
 
