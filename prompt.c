@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * prompt - display prompt to stdout
- * 
+ *
  * Return: no return
  */
 void prompt(void)

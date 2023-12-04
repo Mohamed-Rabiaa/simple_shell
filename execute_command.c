@@ -10,8 +10,9 @@ int execute_command(char *command)
 	char *cmd;
 	char **arguments;
 	pid_t childpid;
+	int status;
 
-	cmd = _strdup(command);
+	cmd = command;
 	if (cmd == NULL)
 		return (-1);
 	arguments = _strtok(cmd);
@@ -24,14 +25,15 @@ int execute_command(char *command)
 	}
 	else if (childpid == 0)
 	{
-	execve(arguments[0], arguments, NULL);
+	execve(cmd, arguments, NULL);
 	perror("execve");
 	return (-1);
 	}
 	else
 	{
-		wait(&childpid);
+		wait(&status);
 	}
+	free(cmd);
+	free(arguments);
 	return (0);
 }
-
