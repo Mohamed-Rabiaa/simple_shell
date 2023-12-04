@@ -33,15 +33,15 @@ char *scanline(void)
 	{
 		if (line)
 			free(line);
-		if(command)
+		if (command)
 			free(command);
-		perror("getline");
+		perror ("getline");
 		exit(EXIT_FAILURE);
 	}
 	remove_newline(line);
 	command = _strdup(line);
 
-	if(line)
+	if (line)
 		free(line);
 	return (command);
 }
