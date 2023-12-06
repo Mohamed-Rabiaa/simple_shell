@@ -20,7 +20,7 @@ extern char **environ;
 int _strlen(char *s);
 char *_strdup(char *str);
 int remove_newline(char *str);
-char **_strtok(char *str);
+char **_strtok(char *str, int delem);
 int _strcmpold(char *s1, char *s2);
 /*main functions*/
 void prompt(void);

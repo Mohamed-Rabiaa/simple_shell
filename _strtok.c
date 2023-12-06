@@ -6,7 +6,7 @@
  * Return: pointer to a new string, or NULL if it fails
  */
 
-char **_strtok(char *str)
+char **_strtok(char *str, int delem)
 {
 	int i, j, k, word_count;
 	char **words;
@@ -15,7 +15,7 @@ char **_strtok(char *str)
 		return (NULL);
 	for (i = 0, word_count = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+		if (str[i] != delem && (i == 0 || str[i - 1] == delem))
 			word_count++;
 	}
 	if (word_count == 0)
@@ -25,9 +25,9 @@ char **_strtok(char *str)
 		return (NULL);
 	for (i = 0, word_count = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+		if (str[i] != delem && (i == 0 || str[i - 1] == delem))
 		{
-			for (j = i; str[j] != '\0' && str[j] != ' '; j++)
+			for (j = i; str[j] != '\0' && str[j] != delem; j++)
 				;
 			words[word_count] = (char *)malloc(sizeof(char) * (j - i + 1));
 			if (words[word_count] == NULL)
@@ -47,3 +47,4 @@ char **_strtok(char *str)
 
 	return (words);
 }
+

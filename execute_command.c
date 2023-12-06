@@ -13,7 +13,7 @@ int execute_command(char *command, char *prog)
 
 	if (command == NULL)
 		return (-1);
-	arguments = _strtok(command);
+	arguments = _strtok(command, ' ');
 	if (command)
 		free(command);
 	precheck(arguments);
