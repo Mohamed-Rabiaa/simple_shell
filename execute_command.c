@@ -5,35 +5,36 @@
  * @command: the command given by the user
  * Return: 0 if success, -1 on failure
  */
-int execute_command(char *command)
+int execute_command(char *command, char *prog)
 {
-	char *cmd;
 	char **arguments;
 	pid_t childpid;
 	int status;
 
-	cmd = command;
-	if (cmd == NULL)
+	if (command == NULL)
 		return (-1);
-	arguments = _strtok(cmd);
+	arguments = _strtok(command);
+	if (command)
+		free(command);
+	precheck(arguments);
 	childpid = fork();
 	if (childpid == -1)
 	{
-		free(cmd);
-		perror("fork");
+		free_arguments(arguments);
+		perror(prog);
 		exit(EXIT_FAILURE);
 	}
 	else if (childpid == 0)
 	{
-	execve(cmd, arguments, NULL);
-	perror("execve");
-	return (-1);
+		execve(arguments[0], arguments, environ);
+		perror(prog);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		wait(&status);
 	}
-	free(cmd);
-	free(arguments);
+	free_arguments(arguments);
 	return (0);
 }
+

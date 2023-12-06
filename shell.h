@@ -1,6 +1,8 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+extern char **environ;
+
 /*our header files*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,11 +21,18 @@ int _strlen(char *s);
 char *_strdup(char *str);
 int remove_newline(char *str);
 char **_strtok(char *str);
+int _strcmpold(char *s1, char *s2);
 /*main functions*/
 void prompt(void);
-char *scanline(void);
-int execute_command(char *command);
+char *scanline(char *prog);
+int execute_command(char *command, char *prog);
+/*builtin functions*/
+void precheck(char **arguments);
+void f_exit(char **arguments);
+/*other functions*/
+void free_arguments(char **arguments);
 
 
 
 #endif /* SHELL_H */
+

@@ -4,17 +4,25 @@
  *
  * Return: 0 when success
  */
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *command;
-	/*char **environ;*/
+	char *command, *prog;
+	int active = 1, nonactive = 0;
 
-	while (1)
+	prog = argv[0];
+	(void)argc;
+	if (!isatty(STDIN_FILENO))
+		nonactive = 1;
+	while (active)
 	{
-		prompt();
-		command = scanline();
-		execute_command(command);
+		if (!nonactive)
+			prompt();
+		command = scanline(prog);
+		execute_command(command, prog);
+		if (nonactive)
+			active = 0;
 	}
 
 	return (0);
 }
+
