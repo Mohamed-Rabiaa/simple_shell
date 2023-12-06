@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * execute_command - check if command exist and execute it
  * @command: the command given by the user
@@ -8,6 +7,8 @@
 int execute_command(char *command, char *prog)
 {
 	char **arguments;
+	char *full_cmd = NULL;
+	struct stat st;
 	pid_t childpid;
 	int status;
 
@@ -16,25 +17,39 @@ int execute_command(char *command, char *prog)
 	arguments = _strtok(command, ' ');
 	if (command)
 		free(command);
-	precheck(arguments);
-	childpid = fork();
-	if (childpid == -1)
+
+	if (arguments[0])
 	{
-		free_arguments(arguments);
-		perror(prog);
-		exit(EXIT_FAILURE);
+                /*check if the command is full*/
+		if (_strchr(arguments[0], '/'))
+			full_cmd = arguments[0];
+		else
+			full_cmd = search_command(arguments[0]);
 	}
-	else if (childpid == 0)
+	 /*check if the command is executable*/
+	if (stat(full_cmd, &st) == 0 && (st.st_mode & S_IXUSR))
 	{
-		execve(arguments[0], arguments, environ);
-		perror(prog);
-		exit(EXIT_FAILURE);
+		childpid = fork();
+		if (childpid == -1)
+		{
+			free_arguments(arguments);
+			perror(prog);
+			exit(EXIT_FAILURE);
+		}
+		else if (childpid == 0)
+		{
+			execve(full_cmd, arguments, environ);
+			perror(prog);
+			exit(EXIT_FAILURE);
+		}
+		else
+			wait(&status);
 	}
 	else
 	{
-		wait(&status);
+		perror(prog);
+		exit(EXIT_FAILURE);
 	}
 	free_arguments(arguments);
 	return (0);
 }
-

@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
 		if (nonactive)
 			active = 0;
 	}
-
+	/*printf("%s\n\n", search_command("ls"));*/
 	return (0);
 }
-
