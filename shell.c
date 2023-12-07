@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
 		if (!nonactive)
 			prompt();
 		command = scanline(prog);
-		execute_command(command, prog);
+		if (command && command[0] != '\0')
+			execute_command(command, prog);
 		if (nonactive)
 			active = 0;
 	}

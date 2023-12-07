@@ -3,11 +3,13 @@
  *search_command - searches for a command in the directories
  *saved in PATH
  *@command: the command to search for
+ *@prog: The name of the program
  *Return: the directory of the command/file
  */
-char *search_command(char *command)
+char *search_command(char *command, char *prog)
 {
 	char **dirs;
+	char *path;
 
 	DIR *d;
 	struct dirent *dirent;
@@ -16,30 +18,38 @@ char *search_command(char *command)
 		return (NULL);
 
 	/*seperate the directories saved in PATH and save them in dirs*/
-	dirs = _strtok(getenv("PATH"), ':');
+	path = getenv("PATH");
+	if (path)
+		dirs = _strtok(path, ':');
 
-	while (*dirs)
+	if (dirs)
 	{
-		d = opendir(*dirs);
-		if (!d)
+		while (*dirs)
 		{
-			perror("opendir");
-			return (NULL);
-		}
-		else
-		{
-			while ((dirent = readdir(d)) != NULL)
+			d = opendir(*dirs);
+			if (!d)
 			{
-				if (strcmp(dirent->d_name, command) == 0)
+				perror(prog);
+				return (NULL);
+			}
+			else
+			{
+				while ((dirent = readdir(d)) != NULL)
 				{
-					closedir(d);
-					_strcat(*dirs, "/");
-					return (_strcat(*dirs, command));
+					if (strcmp(dirent->d_name,
+						   command) == 0)
+					{
+						closedir(d);
+						_strcat(*dirs, "/");
+						return (_strcat(*dirs,
+								command));
+					}
 				}
 			}
+			if (*dirs)
+				free(*dirs);
+			dirs++;
 		}
-		free(*dirs);
-		dirs++;
 	}
 	return (NULL);
 }

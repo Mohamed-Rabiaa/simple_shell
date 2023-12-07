@@ -15,16 +15,15 @@ int execute_command(char *command, char *prog)
 	if (command == NULL)
 		return (-1);
 	arguments = _strtok(command, ' ');
-	if (command)
-		free(command);
 
+	precheck(arguments);
 	if (arguments[0])
 	{
                 /*check if the command is full*/
 		if (_strchr(arguments[0], '/'))
 			full_cmd = arguments[0];
 		else
-			full_cmd = search_command(arguments[0]);
+			full_cmd = search_command(arguments[0], prog);
 	}
 	 /*check if the command is executable*/
 	if (stat(full_cmd, &st) == 0 && (st.st_mode & S_IXUSR))
@@ -48,8 +47,8 @@ int execute_command(char *command, char *prog)
 	else
 	{
 		perror(prog);
-		exit(EXIT_FAILURE);
 	}
-	free_arguments(arguments);
+	if(arguments)
+		free_arguments(arguments);
 	return (0);
 }

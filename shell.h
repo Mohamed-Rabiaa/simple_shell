@@ -20,7 +20,7 @@ extern char **environ;
 int _strlen(char *s);
 char *_strdup(char *str);
 int remove_newline(char *str);
-char **_strtok(char *str, int delem);
+char **_strtok(char *str, char delim);
 int _strcmpold(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
@@ -28,7 +28,7 @@ char *_strchr(char *s, char c);
 void prompt(void);
 char *scanline(char *prog);
 int execute_command(char *command, char *prog);
-char *search_command(char *command);
+char *search_command(char *command, char *prog);
 /*builtin functions*/
 void precheck(char **arguments);
 void f_exit(char **arguments);
@@ -38,4 +38,3 @@ void free_arguments(char **arguments);
 
 
 #endif /* SHELL_H */
-

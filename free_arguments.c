@@ -13,9 +13,8 @@ void free_arguments(char **arguments)
 	if (arguments)
 	{
 		for (i = 0; arguments[i] != NULL; i++)
-		{
 			free(arguments[i]);
-		}
+
 		free(arguments);
 	}
 }

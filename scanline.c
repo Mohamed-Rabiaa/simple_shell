@@ -18,7 +18,7 @@
  */
 char *scanline(char *prog)
 {
-	char *line = NULL, *command = NULL;
+	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
 
@@ -35,10 +35,6 @@ char *scanline(char *prog)
 	 */
 	if (read == -1)
 	{
-		if (line)
-			free(line);
-		if (command)
-			free(command);
 		perror(prog);
 		exit(EXIT_FAILURE);
 	}
@@ -46,4 +42,3 @@ char *scanline(char *prog)
 
 	return (line);
 }
-

@@ -7,6 +7,7 @@
  */
 void f_exit(char **arguments)
 {
-	free_arguments(arguments);
+	if (arguments)
+		free_arguments(arguments);
 	exit(EXIT_SUCCESS);
 }
