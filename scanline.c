@@ -24,7 +24,7 @@ char *scanline(char *prog)
 
 	/*signal(SIGINT, handle_sigint(2));*/
 	errno = 0;
-	read = getline(&line, &len, stdin);
+	read = _getline(STDIN_FILENO, &line, &len);
 	/*
 	 *if (read == 1 && line[0] == '\n')
 	 *{
@@ -35,6 +35,7 @@ char *scanline(char *prog)
 	 */
 	if (read == -1)
 	{
+		free(line);
 		perror(prog);
 		exit(EXIT_FAILURE);
 	}

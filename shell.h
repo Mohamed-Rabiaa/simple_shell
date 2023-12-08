@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#define BUFF_SIZE 256
 extern char **environ;
 
 /*our header files*/
@@ -30,6 +31,8 @@ void prompt(void);
 char *scanline(char *prog);
 int execute_command(char *command, char *prog);
 char *search_command(char *command, char *prog);
+ssize_t _getline(int fd, char **lineptr, size_t *n);
+
 /*builtin functions*/
 void precheck(char **arguments);
 void f_exit(char **arguments);
@@ -41,4 +44,3 @@ void *_realloc(void *ptr, unsigned int new_size);
 
 
 #endif /* SHELL_H */
-
