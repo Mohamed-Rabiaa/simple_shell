@@ -7,7 +7,16 @@
  */
 void f_exit(char **arguments)
 {
-	if (arguments)
+	int eistat = 0;
+
+	if (arguments[1])
+	{
+		eistat = _atoi(arguments[1]);
+		/*this function starts if arguments = exit*/
 		free_arguments(arguments);
-	exit(EXIT_SUCCESS);
+		exit(eistat);
+	}
+	else
+		exit(EXIT_SUCCESS);
 }
+

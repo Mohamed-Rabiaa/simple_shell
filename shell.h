@@ -24,6 +24,7 @@ char **_strtok(char *str, char delim);
 int _strcmpold(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
+int _atoi(char *s);
 /*main functions*/
 void prompt(void);
 char *scanline(char *prog);
@@ -34,7 +35,10 @@ void precheck(char **arguments);
 void f_exit(char **arguments);
 /*other functions*/
 void free_arguments(char **arguments);
+void *_realloc(void *ptr, unsigned int new_size);
+
 
 
 
 #endif /* SHELL_H */
+
