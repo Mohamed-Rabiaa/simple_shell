@@ -19,6 +19,18 @@ int execute_command(char *command, char *prog)
 	precheck(arguments);
 	if (arguments[0])
 	{
+		if (strcmp(arguments[0], "setenv") == 0)
+		{
+			_setenv(arguments[1], arguments[2], 1, prog);
+			  free_arguments(arguments);
+			return (0);
+		}
+		else if (strcmp(arguments[0], "unsetenv") == 0)
+		{
+			_unsetenv(arguments[1], prog);
+			free_arguments(arguments);
+			return(0);
+		}
                 /*check if the command is full*/
 		if (_strchr(arguments[0], '/'))
 			full_cmd = arguments[0];

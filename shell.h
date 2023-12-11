@@ -18,13 +18,16 @@ extern char **environ;
 #include <limits.h>
 
 /*helpful strings tools*/
-int _strlen(char *s);
+size_t _strlen(char *s);
+size_t strarr_len(char **strarr);
 char *_strdup(char *str);
+int _strcmp(char *s1, char *s2);
 int remove_newline(char *str);
 char **_strtok(char *str, char delim);
 int _strcmpold(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
+char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 /*main functions*/
 void prompt(void);
@@ -32,15 +35,13 @@ char *scanline(char *prog);
 int execute_command(char *command, char *prog);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
-
+int _setenv(char *name, char *value, int overwrite, char *prog);
+int _unsetenv(char *name, char *prog);
 /*builtin functions*/
 void precheck(char **arguments);
 void f_exit(char **arguments);
 /*other functions*/
 void free_arguments(char **arguments);
 void *_realloc(void *ptr, unsigned int new_size);
-
-
-
 
 #endif /* SHELL_H */

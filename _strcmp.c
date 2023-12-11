@@ -3,9 +3,10 @@
  * @s1: the first string
  * @s2: the second string
  *
- * Return: -15 if  the first not-matching character in s1
+ * Return: a number less than zero if  the first not-matching character in s1
  * has a lesser ASCII value than the corresponding character in s2,
- * 15 if  first not-matching character in s1 has a greater ASCII value
+ * or a number greater than zero if  first not-matching character
+ * in s1 has a greater ASCII value
  * than the corresponding character in s2,
  * 0 if all of the characters in both strings are the same
  */
