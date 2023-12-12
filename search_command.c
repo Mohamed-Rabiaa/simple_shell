@@ -10,18 +10,14 @@ char *search_command(char *command, char *prog)
 {
 	char **dirs;
 	char *path;
-
 	DIR *d;
 	struct dirent *dirent;
 
 	if (!command)
-		return (NULL);
-
-	/*seperate the directories saved in PATH and save them in dirs*/
-	path = getenv("PATH");
+		return (NULL); /*seperate the directories saved in PATH*/
+	path = getenv("PATH"); /*and save them in dirs*/
 	if (path)
 		dirs = _strtok(path, ':');
-
 	if (dirs)
 	{
 		while (*dirs)
@@ -41,8 +37,7 @@ char *search_command(char *command, char *prog)
 					{
 						closedir(d);
 						_strcat(*dirs, "/");
-						return (_strcat(*dirs,
-								command));
+						return (_strcat(*dirs, command));
 					}
 				}
 			}
@@ -53,3 +48,4 @@ char *search_command(char *command, char *prog)
 	}
 	return (NULL);
 }
+
