@@ -29,11 +29,10 @@ int precheck(char **arguments, char *prog)
 			return (0);
 		}
 		else if (strcmp(arguments[0], "cd") == 0)
-                {
-                        _chdir(arguments[1], prog);
-                        return (0);
-                }
-
+		{
+			_chdir(arguments[1], prog);
+			return (0);
+		}
 	}
 
 	return (-1);

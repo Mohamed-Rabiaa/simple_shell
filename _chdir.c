@@ -5,13 +5,14 @@
  *@prog: the name of the program
  *
  *Return: 0 on success
--1 on failure
+ *-1 on failure
 */
 int _chdir(char *path, char *prog)
 {
 	char *dir = NULL;
 
 	char buffer[BUFF_SIZE];
+
 	if (!path || _strcmp(path, "$HOME") == 0)
 	{
 		dir = "/root";

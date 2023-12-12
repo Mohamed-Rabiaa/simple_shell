@@ -8,8 +8,7 @@
  */
 char *search_command(char *command, char *prog)
 {
-	char **dirs;
-	char *path;
+	char **dirs, char *path;
 	DIR *d;
 	struct dirent *dirent;
 
@@ -26,6 +25,8 @@ char *search_command(char *command, char *prog)
 			if (!d)
 			{
 				perror(prog);
+				closedir(d);
+				free_arguments(dirs);
 				return (NULL);
 			}
 			else

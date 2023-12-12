@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * _setenv - Initializes a new environment variable, or modify an existing one
  * @name: the name of the variable to initialize or modify
@@ -32,6 +33,7 @@ int _setenv(char *name, char *value, int overwrite, char *prog)
 					perror(prog);
 					return (-1);
 				}
+				str[0] = '\0';
 				_strcat(str, name);
 				_strcat(str, "=");
 				_strcat(str, value);

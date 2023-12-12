@@ -12,6 +12,7 @@ int _unsetenv(char *name, char *prog)
 
 	if (!name)
 	{
+		errno = EINVAL;
 		perror(prog);
 		return (-1);
 	}
@@ -33,4 +34,3 @@ int _unsetenv(char *name, char *prog)
 	}
 	return (0);
 }
-

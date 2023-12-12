@@ -28,12 +28,12 @@ int main(int argc, char *argv[])
 			arguments = _strtok(command, ' ');
 			free(command);
 			execute_command(arguments, prog);
+			free_arguments(arguments);
 		}
 
 		if (nonactive)
 			active = 0;
 	}
-	/*printf("%s\n\n", search_command("ls"));*/
 	return (0);
 }
 
