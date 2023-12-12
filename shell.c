@@ -7,7 +7,7 @@
  */
 int main(int argc, char *argv[])
 {
-	char *command, *prog;
+	char **arguments, *command, *prog;
 	int active = 1, nonactive = 0;
 
 	prog = argv[0];
@@ -20,7 +20,11 @@ int main(int argc, char *argv[])
 			prompt();
 		command = scanline(prog);
 		if (command && command[0] != '\0')
-			execute_command(command, prog);
+		{
+			arguments = _strtok(command, ' ');
+			free(command);
+			execute_command(arguments, prog);
+		}
 		if (nonactive)
 			active = 0;
 	}

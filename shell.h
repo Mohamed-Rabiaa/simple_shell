@@ -32,7 +32,7 @@ int _atoi(char *s);
 /*main functions*/
 void prompt(void);
 char *scanline(char *prog);
-int execute_command(char *command, char *prog);
+int execute_command(char **arguments, char *prog);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
 /*builtin functions*/

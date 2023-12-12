@@ -1,20 +1,19 @@
 #include "shell.h"
 /**
  * execute_command - check if command exist and execute it
- * @command: the command given by the user
+ * @arguments: the arguments given by the user
  * @prog: our program name
  * Return: 0 if success, -1 on failure
  */
-int execute_command(char *command, char *prog)
+int execute_command(char **arguments, char *prog)
 {
-	char **arguments, *full_cmd = NULL;
+	char *full_cmd = NULL;
 	struct stat st;
 	pid_t childpid;
 	int status;
 
-	if (command == NULL)
+	if (arguments == NULL)
 		return (-1);
-	arguments = _strtok(command, ' ');
 	if (precheck(arguments, prog) == 0)
 		return (0);
 	if (arguments[0])
