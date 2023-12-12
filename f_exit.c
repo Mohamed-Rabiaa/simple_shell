@@ -17,6 +17,10 @@ void f_exit(char **arguments)
 		exit(eistat);
 	}
 	else
+	{
+		free_arguments(arguments);
 		exit(EXIT_SUCCESS);
+	}
 }
+
 

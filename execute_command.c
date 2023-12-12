@@ -2,12 +2,12 @@
 /**
  * execute_command - check if command exist and execute it
  * @command: the command given by the user
+ * @prog: our program name
  * Return: 0 if success, -1 on failure
  */
 int execute_command(char *command, char *prog)
 {
-	char **arguments;
-	char *full_cmd = NULL;
+	char **arguments, *full_cmd = NULL;
 	struct stat st;
 	pid_t childpid;
 	int status;
@@ -15,29 +15,15 @@ int execute_command(char *command, char *prog)
 	if (command == NULL)
 		return (-1);
 	arguments = _strtok(command, ' ');
-
-	precheck(arguments);
+	if (precheck(arguments, prog) == 0)
+		return (0);
 	if (arguments[0])
-	{
-		if (strcmp(arguments[0], "setenv") == 0)
-		{
-			_setenv(arguments[1], arguments[2], 1, prog);
-			  free_arguments(arguments);
-			return (0);
-		}
-		else if (strcmp(arguments[0], "unsetenv") == 0)
-		{
-			_unsetenv(arguments[1], prog);
-			free_arguments(arguments);
-			return(0);
-		}
-                /*check if the command is full*/
+	{ /*check if the command is full*/
 		if (_strchr(arguments[0], '/'))
 			full_cmd = arguments[0];
 		else
 			full_cmd = search_command(arguments[0], prog);
-	}
-	 /*check if the command is executable*/
+	} /*check if the command is executable*/
 	if (stat(full_cmd, &st) == 0 && (st.st_mode & S_IXUSR))
 	{
 		childpid = fork();
@@ -57,10 +43,9 @@ int execute_command(char *command, char *prog)
 			wait(&status);
 	}
 	else
-	{
 		perror(prog);
-	}
-	if(arguments)
+	if (arguments)
 		free_arguments(arguments);
 	return (0);
 }
+

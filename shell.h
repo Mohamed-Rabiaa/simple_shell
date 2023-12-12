@@ -35,13 +35,14 @@ char *scanline(char *prog);
 int execute_command(char *command, char *prog);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
+/*builtin functions*/
+int precheck(char **arguments, char *prog);
+void f_exit(char **arguments);
 int _setenv(char *name, char *value, int overwrite, char *prog);
 int _unsetenv(char *name, char *prog);
-/*builtin functions*/
-void precheck(char **arguments);
-void f_exit(char **arguments);
 /*other functions*/
 void free_arguments(char **arguments);
 void *_realloc(void *ptr, unsigned int new_size);
 
 #endif /* SHELL_H */
+
