@@ -3,7 +3,6 @@
  *_unsetenv - deletes the variable name from the environment
  *@name: the name of the variable to remove
  *@prog: the name of the program
- *
  *Return: 0 on success
  *-1 on failure
  */
@@ -27,10 +26,11 @@ int _unsetenv(char *name, char *prog)
 				for (j = i; environ[j]; j++)
 					environ[j] = environ[j + 1];
 				environ[j] = NULL;
-				return(0);
+				return (0);
 			}
 			i++;
 		}
 	}
 	return (0);
 }
+

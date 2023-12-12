@@ -3,6 +3,7 @@
 /**
  * _strtok - splits a string into words.
  * @str: the strings
+ * @delim: ou delimiter
  * Return: pointer to a new string, or NULL if it fails
  */
 
@@ -48,3 +49,4 @@ char **_strtok(char *str, char delim)
 
 	return (words);
 }
+

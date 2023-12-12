@@ -13,7 +13,7 @@
 
 /**
  * scanline - scans the command given by user
- *
+ * @prog: our program name
  * Return: the command
  */
 char *scanline(char *prog)
@@ -43,3 +43,4 @@ char *scanline(char *prog)
 
 	return (line);
 }
+

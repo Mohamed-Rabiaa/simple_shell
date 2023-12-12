@@ -1,7 +1,8 @@
 #include "shell.h"
 /**
  * main - simple shell
- *
+ * @argc: argument count
+ * @argv: the arguments
  * Return: 0 when success
  */
 int main(int argc, char *argv[])
@@ -26,3 +27,4 @@ int main(int argc, char *argv[])
 	/*printf("%s\n\n", search_command("ls"));*/
 	return (0);
 }
+
