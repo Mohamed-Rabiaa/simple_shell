@@ -28,29 +28,23 @@ int execute_command(char **arguments, char *prog)
 		childpid = fork();
 		if (childpid == -1)
 		{
-			free_arguments(arguments);
-			free(full_cmd);
 			perror(prog);
 			exit(EXIT_FAILURE);
 		}
 		else if (childpid == 0)
 		{
 			execve(full_cmd, arguments, environ);
-			free_arguments(arguments);
-			free(full_cmd);
 			perror(prog);
 			exit(EXIT_FAILURE);
 		}
 		else
 		{
-			free(full_cmd);
 			wait(&status);
 		}
 	}
 	else
 	{
 		perror(prog);
-		free(full_cmd);
 	}
 	free_arguments(arguments);
 	return (0);
