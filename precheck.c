@@ -12,24 +12,29 @@ int precheck(char **arguments, char *prog)
 
 	if (arguments)
 	{
-		if (!(_strcmpold(arguments[0], exitword)))
+		if (!(_strcmp(arguments[0], exitword)))
 		{
 			f_exit(arguments);
 		}
-		else if (_strcmpold(arguments[0], "setenv") == 0)
+		else if (_strcmp(arguments[0], "setenv") == 0)
 		{
 			_setenv(arguments[1], arguments[2], 1, prog);
 			free_arguments(arguments);
 			return (0);
 		}
-		else if (_strcmpold(arguments[0], "unsetenv") == 0)
+		else if (_strcmp(arguments[0], "unsetenv") == 0)
 		{
 			_unsetenv(arguments[1], prog);
 			free_arguments(arguments);
 			return (0);
 		}
+		else if (strcmp(arguments[0], "cd") == 0)
+                {
+                        _chdir(arguments[1], prog);
+                        return (0);
+                }
+
 	}
 
 	return (-1);
 }
-

@@ -7,7 +7,8 @@
  */
 int main(int argc, char *argv[])
 {
-	char **arguments, *command, *prog;
+	char **arguments, *command, *dir, *prog;
+	char buffer[BUFF_SIZE];
 	int active = 1, nonactive = 0;
 
 	prog = argv[0];
@@ -17,7 +18,10 @@ int main(int argc, char *argv[])
 	while (active)
 	{
 		if (!nonactive)
-			prompt();
+		{
+			dir = getcwd(buffer, BUFF_SIZE);
+			prompt(dir);
+		}
 		command = scanline(prog);
 		if (command && command[0] != '\0')
 		{
@@ -25,6 +29,7 @@ int main(int argc, char *argv[])
 			free(command);
 			execute_command(arguments, prog);
 		}
+
 		if (nonactive)
 			active = 0;
 	}

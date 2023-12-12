@@ -25,7 +25,6 @@ int _setenv(char *name, char *value, int overwrite, char *prog)
 		{
 			if (overwrite)
 			{
-				free(environ[i]);
 				str = malloc(_strlen(name) + _strlen(value) + 2);
 				if (!str)
 				{

@@ -30,11 +30,12 @@ char *_strchr(char *s, char c);
 char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 /*main functions*/
-void prompt(void);
+void prompt(char *dir);
 char *scanline(char *prog);
 int execute_command(char **arguments, char *prog);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
+int _chdir(char *path, char *prog);
 /*builtin functions*/
 int precheck(char **arguments, char *prog);
 void f_exit(char **arguments);
