@@ -39,3 +39,4 @@ int precheck(char **arguments, char *prog)
 
 	return (-1);
 }
+
