@@ -6,6 +6,7 @@
 void _printenv(void)
 {
 	char **temp = environ;
+
 	while (*temp)
 	{
 		write(STDOUT_FILENO, *temp, _strlen(*temp));
@@ -14,3 +15,4 @@ void _printenv(void)
 		temp++;
 	}
 }
+
