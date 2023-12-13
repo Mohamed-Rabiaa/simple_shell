@@ -16,7 +16,7 @@
  * @prog: our program name
  * Return: the command
  */
-char *scanline(char *prog)
+char *scanline(char *prog, int nonactive)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -36,6 +36,11 @@ char *scanline(char *prog)
 	 */
 	if (read == -1)
 	{
+		if (nonactive)
+		{
+			free(line);
+			return ("end has been !found!");
+		}
 		free(line);
 		perror(prog);
 		exit(EXIT_FAILURE);
@@ -44,4 +49,5 @@ char *scanline(char *prog)
 
 	return (line);
 }
+
 

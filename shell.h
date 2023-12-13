@@ -32,7 +32,7 @@ char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 /*main functions*/
 void prompt(char *dir);
-char *scanline(char *prog);
+char *scanline(char *prog, int nonactive);
 int execute_command(char **arguments, char *prog);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
@@ -47,4 +47,5 @@ void free_arguments(char **arguments);
 void *_realloc(void *ptr, unsigned int new_size);
 
 #endif /* SHELL_H */
+
 

@@ -25,15 +25,14 @@ char *search_command(char *command, char *prog)
 			d = opendir(*dirs);
 			if (!d)
 			{
-				perror(prog);
+				(void)prog; /*perror(prog);*/
 				return (NULL);
 			}
 			else
 			{
 				while ((dirent = readdir(d)) != NULL)
 				{
-					if (strcmp(dirent->d_name,
-						   command) == 0)
+					if (strcmp(dirent->d_name, command) == 0)
 					{
 						closedir(d);
 						_strcat(*dirs, "/");
@@ -48,4 +47,5 @@ char *search_command(char *command, char *prog)
 	}
 	return (NULL);
 }
+
 
