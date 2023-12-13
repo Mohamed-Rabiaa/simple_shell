@@ -3,9 +3,10 @@
  * execute_command - check if command exist and execute it
  * @arguments: the arguments given by the user
  * @prog: our program name
+ * @linenum: line number
  * Return: 0 if success, -1 on failure
  */
-int execute_command(char **arguments, char *prog)
+int execute_command(char **arguments, char *prog, int linenum)
 {
 	char *full_cmd = NULL;
 	struct stat st;
@@ -39,12 +40,13 @@ int execute_command(char **arguments, char *prog)
 			exit(EXIT_FAILURE);
 		}
 		else
+		{
 			wait(&status);
+			errno = status;
+		}
 	}
 	else
-	{
-		perror(prog);
-	}
+		errfun(prog, arguments, linenum);
 	return (0);
 }
 

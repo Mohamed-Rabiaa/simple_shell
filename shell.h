@@ -32,8 +32,8 @@ char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 /*main functions*/
 void prompt(char *dir);
-char *scanline(char *prog, int nonactive);
-int execute_command(char **arguments, char *prog);
+char *scanline(char *prog, int nonactive, int *linenum);
+int execute_command(char **arguments, char *prog, int linenum);
 char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
 int _chdir(char *path, char *prog);
@@ -46,7 +46,11 @@ void _printenv(void);
 /*other functions*/
 void free_arguments(char **arguments);
 void *_realloc(void *ptr, unsigned int new_size);
+/*print functions*/
+int print_number(int n);
+int _putchar(char c);
+int _puts(char *str);
+int errfun(char *prog, char **arguments, int linenum);
 
 #endif /* SHELL_H */
-
 

@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 	char **arguments, *command, *dir, *prog;
 	char buffer[BUFF_SIZE];
-	int active = 1, nonactive = 0;
+	int active = 1, nonactive = 0, linenum = 0;
 
 	errno = 0;
 	prog = argv[0];
@@ -26,16 +26,16 @@ int main(int argc, char *argv[])
 			dir = getcwd(buffer, BUFF_SIZE);
 			prompt(dir);
 		}
-		command = scanline(prog, nonactive);
+		command = scanline(prog, nonactive, &linenum);
 		if (_strcmpold(command, "end has been !found!") == 0)
-			return (0);
+			return (errno);
 		/*if (check_spaces(command) == 1)*/
 			/*return (0);*/
 		if (command && command[0] != '\0')
 		{
 			arguments = _strtok(command, ' ');
 			free(command);
-			execute_command(arguments, prog);
+			execute_command(arguments, prog, linenum);
 			free_arguments(arguments);
 		}
 		/*if (nonactive)*/
@@ -43,5 +43,4 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
-
 

@@ -15,9 +15,10 @@
  * scanline - scans the command given by user
  * @prog: our program name
  * @nonactive: flag for non interactive mode
+ * @linenum: number of the line
  * Return: the command
  */
-char *scanline(char *prog, int nonactive)
+char *scanline(char *prog, int nonactive, int *linenum)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -39,8 +40,8 @@ char *scanline(char *prog, int nonactive)
 		exit(EXIT_FAILURE);
 	}
 	remove_newline(line);
+	*linenum = *linenum + 1;
 
 	return (line);
 }
-
 

@@ -7,7 +7,7 @@
  */
 void f_exit(char **arguments)
 {
-	int eistat = 0;
+	int eistat = 0, tmp = 0;
 
 	if (arguments[1])
 	{
@@ -19,6 +19,12 @@ void f_exit(char **arguments)
 	else
 	{
 		free_arguments(arguments);
+		if (errno >= 256)
+		{
+			tmp = errno % 256;
+			errno /= 256;
+			errno += tmp;
+		}
 		exit(errno);
 	}
 }
