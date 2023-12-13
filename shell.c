@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 			prompt(dir);
 		}
 		command = scanline(prog);
+		if (check_spaces(command) == 1)
+			return (0);
 		if (command && command[0] != '\0')
 		{
 			arguments = _strtok(command, ' ');

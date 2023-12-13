@@ -24,7 +24,8 @@ char *scanline(char *prog)
 
 	/*signal(SIGINT, handle_sigint(2));*/
 	errno = 0;
-	read = _getline(STDIN_FILENO, &line, &len);
+	/*read = getline(STDIN_FILENO, &line, &len);*/
+	read = getline(&line, &len, stdin);
 	/*
 	 *if (read == 1 && line[0] == '\n')
 	 *{
