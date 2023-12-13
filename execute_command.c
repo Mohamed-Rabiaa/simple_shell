@@ -38,14 +38,10 @@ int execute_command(char **arguments, char *prog)
 			exit(EXIT_FAILURE);
 		}
 		else
-		{
 			wait(&status);
-		}
 	}
 	else
-	{
 		perror(prog);
-	}
 	free_arguments(arguments);
 	return (0);
 }

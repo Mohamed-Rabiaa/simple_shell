@@ -18,13 +18,15 @@ int precheck(char **arguments, char *prog)
 		}
 		else if (_strcmp(arguments[0], "setenv") == 0)
 		{
-			_setenv(arguments[1], arguments[2], 1, prog);
+			/*_setenv(arguments[1], arguments[2], 1, prog);*/
+			setenv(arguments[1], arguments[2], 1);
 			free_arguments(arguments);
 			return (0);
 		}
 		else if (_strcmp(arguments[0], "unsetenv") == 0)
 		{
-			_unsetenv(arguments[1], prog);
+			/*_unsetenv(arguments[1], prog);*/
+			unsetenv(arguments[1]);
 			free_arguments(arguments);
 			return (0);
 		}
