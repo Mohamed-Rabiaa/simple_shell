@@ -14,6 +14,7 @@
 /**
  * scanline - scans the command given by user
  * @prog: our program name
+ * @nonactive: flag for non interactive mode
  * Return: the command
  */
 char *scanline(char *prog, int nonactive)

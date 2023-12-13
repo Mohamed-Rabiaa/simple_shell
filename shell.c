@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
 		command = scanline(prog, nonactive);
 		if (_strcmpold(command, "end has been !found!") == 0)
 			return (0);
-		/*if (check_spaces(command) == 1)
-			return (0);*/
+		/*if (check_spaces(command) == 1)*/
+			/*return (0);*/
 		if (command && command[0] != '\0')
 		{
 			arguments = _strtok(command, ' ');
@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
 			/*free_arguments(arguments);*/
 		}
 
-		/*if (nonactive)
-			active = 0;*/
+		/*if (nonactive)*/
+			/*active = 0;*/
 	}
 	return (0);
 }
