@@ -17,7 +17,8 @@ int check_spaces(char *line)
 		if ((line[i] == ' ') && (line[i + 1] == ' '))
 			n = 1;
 
-		else if ((line[i] == ' ') && (line[i + 1] != ' '))
+		else if ((line[i] == ' ') && (line[i + 1] != ' ')
+			 && (line[i + 1] != '\0'))
 			n = 0;
 	}
 	return (n);

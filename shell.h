@@ -42,6 +42,7 @@ int precheck(char **arguments, char *prog);
 void f_exit(char **arguments);
 int _setenv(char *name, char *value, int overwrite, char *prog);
 int _unsetenv(char *name, char *prog);
+void _printenv(void);
 /*other functions*/
 void free_arguments(char **arguments);
 void *_realloc(void *ptr, unsigned int new_size);
