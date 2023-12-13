@@ -25,7 +25,7 @@ char *search_command(char *command, char *prog)
 			d = opendir(*dirs);
 			if (!d)
 			{
-				(void)prog; /*perror(prog);*/
+				perror(prog);
 				return (NULL);
 			}
 			else

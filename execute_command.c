@@ -16,6 +16,7 @@ int execute_command(char **arguments, char *prog)
 		return (-1);
 	if (precheck(arguments, prog) == 0)
 		return (0);
+	errno = 0;
 	if (arguments[0])
 	{ /*check if the command is full*/
 		if (_strchr(arguments[0], '/'))
@@ -34,7 +35,6 @@ int execute_command(char **arguments, char *prog)
 		else if (childpid == 0)
 		{
 			execve(full_cmd, arguments, environ);
-			errno = ENOENT;
 			perror(prog);
 			exit(EXIT_FAILURE);
 		}
@@ -44,7 +44,6 @@ int execute_command(char **arguments, char *prog)
 	else
 	{
 		perror(prog);
-		errno = EFAULT;
 	}
 	return (0);
 }

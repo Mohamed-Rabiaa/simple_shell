@@ -11,10 +11,14 @@ int main(int argc, char *argv[])
 	char buffer[BUFF_SIZE];
 	int active = 1, nonactive = 0;
 
+	errno = 0;
 	prog = argv[0];
 	(void)argc;
 	if (!isatty(STDIN_FILENO))
+	{
 		nonactive = 1;
+		errno = 0;
+	}
 	while (active)
 	{
 		if (!nonactive)
