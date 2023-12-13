@@ -19,8 +19,7 @@ void f_exit(char **arguments)
 	else
 	{
 		free_arguments(arguments);
-		exit(EXIT_SUCCESS);
+		exit(errno);
 	}
 }
-
 
