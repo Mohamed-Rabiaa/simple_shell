@@ -15,7 +15,7 @@ int execute_command(char **arguments, char *prog, int linenum)
 
 	if (arguments == NULL)
 		return (-1);
-	if (precheck(arguments, prog) == 0)
+	if (precheck(arguments, prog, linenum) == 0)
 		return (0);
 	errno = 0;
 	if (arguments[0])

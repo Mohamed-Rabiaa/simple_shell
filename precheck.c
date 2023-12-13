@@ -4,16 +4,20 @@
  * precheck - check for built in commands
  * @arguments: our arguments
  * @prog: our prog name
+ * @linenum: number of the line
  * Return: 0 on success, -1 if fail
  */
-int precheck(char **arguments, char *prog)
+int precheck(char **arguments, char *prog, int linenum)
 {
 	char *exitword = "exit";
 
 	if (arguments)
 	{
 		if (!(_strcmp(arguments[0], exitword)))
-			f_exit(arguments);
+		{
+			f_exit(arguments, prog, linenum);
+			return (0);
+		}
 		else if (_strcmp(arguments[0], "env") == 0)
 		{
 			_printenv();
@@ -38,3 +42,4 @@ int precheck(char **arguments, char *prog)
 
 	return (-1);
 }
+

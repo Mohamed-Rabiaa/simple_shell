@@ -29,6 +29,7 @@ int _strcmpold(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
 char *_strstr(char *haystack, char *needle);
+int _str123(char *string);
 int _atoi(char *s);
 /*main functions*/
 void prompt(char *dir);
@@ -38,8 +39,8 @@ char *search_command(char *command, char *prog);
 ssize_t _getline(int fd, char **lineptr, size_t *n);
 int _chdir(char *path, char *prog);
 /*builtin functions*/
-int precheck(char **arguments, char *prog);
-void f_exit(char **arguments);
+int precheck(char **arguments, char *prog, int linenum);
+void f_exit(char **arguments, char *prog, int linenum);
 int _setenv(char *name, char *value, int overwrite, char *prog);
 int _unsetenv(char *name, char *prog);
 void _printenv(void);
