@@ -24,17 +24,9 @@ char *scanline(char *prog, int nonactive)
 	ssize_t read;
 
 	/*signal(SIGINT, handle_sigint(2));*/
-	errno = 0;
+	/*errno = 0;*/
 	/*read = getline(STDIN_FILENO, &line, &len);*/
 	read = getline(&line, &len, stdin);
-	/*
-	 *if (read == 1 && line[0] == '\n')
-	 *{
-	 *	write(STDOUT_FILENO, line, _strlen(line));
-	 *	exit(EXIT_SUCCESS);
-	 *}
-	 *else
-	 */
 	if (read == -1)
 	{
 		if (nonactive)

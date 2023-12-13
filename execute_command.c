@@ -33,19 +33,19 @@ int execute_command(char **arguments, char *prog)
 		}
 		else if (childpid == 0)
 		{
-			errno = 0;
 			execve(full_cmd, arguments, environ);
+			errno = ENOENT;
 			perror(prog);
-			errno = 2;
 			exit(EXIT_FAILURE);
 		}
 		else
 			wait(&status);
 	}
 	else
+	{
 		perror(prog);
-	free_arguments(arguments);
+		errno = EFAULT;
+	}
 	return (0);
 }
-
 
