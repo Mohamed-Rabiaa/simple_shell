@@ -32,19 +32,6 @@ void f_exit(char **arguments, char *prog, int linenum)
 	(void)linenum;
 	if (arguments[1])
 	{
-		if (_str123(arguments[1]))
-		{
-			_puts(prog);
-			_puts(": ");
-			print_number(linenum);
-			_puts(": ");
-			_puts(arguments[0]);
-			_puts(": Illegal number: ");
-			_puts(arguments[1]);
-			_puts("\n");
-			errno = 2;
-			return;
-		}
 		/*this function starts if arguments = exit*/
 		eistat = _atoi(arguments[1]);
 		free_arguments(arguments);
