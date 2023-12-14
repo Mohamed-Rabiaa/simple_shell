@@ -28,6 +28,8 @@ void f_exit(char **arguments, char *prog, int linenum)
 {
 	int eistat = 0, tmp = 0;
 
+	(void)prog;
+	(void)linenum;
 	if (arguments[1])
 	{
 		/* if (_str123(arguments[1]))*/
